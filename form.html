@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Genos:ital,wght@0,100..900;1,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
+    <title>Registretion</title>
+</head>
+<body>
+   <div class="continer">
+    <div class="form">
+        <form action="" method="get" id="registrationForm">
+            <div class="div">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="input full name" required>
+                <span class="error-message" id="nameError"></span>
+            </div>
+            <div class="div">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="yourmail@gmail.com">
+                <span class="error-message" id="emailError"></span>
+            </div>
+            <div class="div">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <span class="error-message" id="passwordError"></span>
+            </div>
+            <div class="div">
+                <label for="password">Confirm Password</label>
+                <input type="password" name="password" id="confirmpassword">
+                <span class="error-message" id="confirmPasswordError"></span>
+            </div>
+            <button type="submit" class="btn">Regstretion</button>
+        </form>
+    </div>
+   </div>
+   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('registrationForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const confirmPasswordError = document.getElementById('confirmPasswordError');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const isEmailValid = validateEmail();
+        const isPasswordStrong = validatePasswordStrength();
+        const doPasswordsMatch = validatePasswordMatch();
+
+        if (isEmailValid && isPasswordStrong && doPasswordsMatch) {
+            alert('تم التحقق بنجاح! يمكن إرسال النموذج.');
+        } else {
+            alert('يُرجى تصحيح الأخطاء في النموذج قبل المتابعة.');
+        }
+    });
+
+    function validateEmail() {
+        const email = emailInput.value;
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+
+        if (!emailPattern.test(email)) {
+            emailError.textContent = ' يُرجى إدخال بريد إلكتروني صحيح (مثل user@example.com).';
+            return false;
+        } else {
+            emailError.textContent = '*-*';
+            return true;
+        }
+    }
+    function validatePasswordStrength() {
+        const password = passwordInput.value;
+        let isValid = true;
+        let message = '';
+        if (password.length < 8) {
+            message += '• يجب أن تكون 8 محارف على الأقل. ';
+            isValid = false;
+        }
+        if (!/[A-Z]/.test(password)) {
+            message += '• يجب أن تحتوي على حرف كبير واحد على الأقل. ';
+            isValid = false;
+        }
+        if (!/[a-z]/.test(password)) {
+            message += '• يجب أن تحتوي على حرف صغير واحد على الأقل. ';
+            isValid = false;
+        }
+        if (!/\d/.test(password)) {
+            message += '• يجب أن تحتوي على رقم واحد على الأقل. ';
+            isValid = false;
+        }
+        if (!/[@$!%*?&]/.test(password)) {
+            message += '• يجب أن تحتوي على محرف خاص واحد على الأقل (@$!%*?&).';
+            isValid = false;
+        }
+
+        if (isValid) {
+            passwordError.textContent = '*0*';
+        } else {
+            passwordError.textContent = ' كلمة المرور ضعيفة: ' + message;
+        }
+        return isValid;
+    }
+    function validatePasswordMatch() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (password !== confirmPassword || password === '') {
+            confirmPasswordError.textContent = ' كلمتا المرور غير متطابقتين أو فارغتين.';
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    emailInput.addEventListener('input', validateEmail);
+    passwordInput.addEventListener('input', validatePasswordStrength);
+    confirmPasswordInput.addEventListener('input', validatePasswordMatch);
+    passwordInput.addEventListener('input', validatePasswordMatch); 
+});
+   </script>
+</body>
+</html>

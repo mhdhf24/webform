@@ -1,0 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: "Rubik";
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(180deg, #ffffff, #0fffaf71);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.continer{
+    width: max-content;
+    height: max-content;
+    margin: 40px;
+}
+
+.form{
+    width: 500px;
+    height: 500px;
+    background-color: rgba(110, 173, 231, 0.42);
+    backdrop-filter: blur(20px);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    width: 300px;
+    height: max-content;
+    margin:20px;
+    display: grid;
+    justify-items: stretch;
+    justify-content: start;
+    flex-direction: column;
+}
+
+label[for="name"],
+label[for="email"],
+label[for="password"]{
+    display: block;
+    color: rgb(74, 75, 75);
+}
+
+input[type="text"],
+  input[type="email"],
+    input[type="password"]{
+    margin: 6px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 1px 1px 5px;
+    color: #000;
+    width: 250px;
+    transition: all 800ms ease-in-out;
+}
+
+input:hover {
+    box-shadow: 1px 1px 5px white; 
+    transform: scale(1.05px);
+    cursor: pointer;
+}
+
+.btn, input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    box-shadow: 2px 1px 5px #000000;
+    background-color : #288be7;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    transition: all 800ms ease-in-out;
+}
+
+.btn:hover, input[type="submit"]:hover{
+    transform: scale(1.05px);
+    background-color: rgb(31, 37, 35);
+}
